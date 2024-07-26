@@ -26,7 +26,14 @@ LOGS =>
 
 */
 
-function triangles() {
+function triangles(number) {
+  for(var i = 1; i <= number; i++) {
+    var level ='';
+    for(var j = 0; j < i; j++) {
+      level += '#'
+    }
+    console.log(level);
+  }
   
 }
 
@@ -48,12 +55,25 @@ on the number:
 */
 
 function fizzBuzz(start, end) {
-  
+  for (var i = start; i <= end; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+      console.log("fizzbuzz");
+    } else if(i % 3 === 0) {
+      console.log("fizz");
+    } else if(i % 5 === 0) {
+      console.log("buzz");
+    } else {
+      console.log(i);
+    }
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // drawChessboard //////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
+
+
+
 
 /*
 Directions: Create a function called drawChessboard that takes in a parameter of
@@ -82,8 +102,19 @@ LOGS =>
 */
 
 function drawChessboard(x) {
+  var chessboard ='';
 
-
+  for(var row = 0; row < x; row++) {
+    for(var col = 0; col < x; col++) {
+      if((row + col) % 2 === 0) {
+        chessboard += ' ';
+      } else {
+        chessboard += '#';
+      }
+    }
+      chessboard += '\n';
+  }
+  console.log(chessboard);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
