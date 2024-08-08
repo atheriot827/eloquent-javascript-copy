@@ -42,7 +42,14 @@ function range(start, end, step = 1) {
 //E:
 
 function sum(array) {
+  //init sum
+  let total = 0;
 
+  //add each number in array to total
+  for(let number of array) {
+    total += number;
+  }
+  return total;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
