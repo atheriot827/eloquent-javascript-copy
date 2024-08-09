@@ -56,7 +56,13 @@ function sum(array) {
 // reverseArray ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArray() {
+function reverseArray(array) {
+  let output = [];
+
+  for(let i = array.length - 1; i >= 0; i--) {
+    output.push(array[i]);
+  }
+  return output;
 
 }
 
@@ -64,39 +70,74 @@ function reverseArray() {
 // reverseArrayInPlace /////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArrayInPlace() {
+function reverseArrayInPlace(array) {
+  let left = 0;
+  let right = array.length - 1;
 
+  while(left < right) {
+    //swap the ele of the left and right indices
+    let temp = array[left];
+    array[left] = array[right];
+    array[right] = temp;
+    //move toward the center
+    left ++;
+    right--;
+  }
+  return array;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // arrayToList /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function arrayToList() {
-
+function arrayToList(array) {
+  //start with empty list
+  let list = null;
+  //iterate backwards
+  for(let i = array.length - 1; i>= 0; i--) {
+    list = { value: array[i], rest: list };
+  }
+  return list;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // listToArray /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function listToArray() {
-
+function listToArray(list) {
+  //init empty array
+  let array = [];
+  //iterate
+  for(let node = list; node; node = node.rest) {
+    //push into array
+    array.push(node.value)
+  }
+  return array;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // prepend /////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function prepend() {
-
+function prepend(element, list) {
+  return {
+    value: element,
+    rest: list
+  };
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // nth /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function nth() {
+function nth(list, number) {
+  if(list === null) {
+    return undefined;
+  } else if (number === 0) {
+    return list.value;
+  } else {
+    return nth(list.rest, number - 1);
+  }
 
 }
 
@@ -104,7 +145,32 @@ function nth() {
 // deepEqual ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function deepEqual() {
+function deepEqual(a, b) {
+  //check if both values are strictly equal
+  if(a === b) {
+    return true;
+  }
+  //check if either value is null or not an object
+  if (a == null || b == null || typeof a !== 'object' || typeof b !== 'object') {
+    return false;
+  }
+  //get keys of both objects
+  let keysA = Object.keys(a);
+  let keysB = Object.keys(b);
+
+  //check if num of prop is diff
+  if (keysA.length !== keysB.length) {
+    return false;
+  }
+
+  //check if all props in a are in b
+  for (let key of keysA) {
+    if (!keysB.includes(key) || ! deepEqual(a[key], b[key])) {
+      return false;
+    }
+  }
+
+  return true;
 
 }
 
