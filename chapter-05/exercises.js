@@ -2,7 +2,12 @@
 // flatten /////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function flatten() {
+function flatten(arrays) {
+  //use reduce to process each sub arr and accum results into single arr
+  return arrays.reduce(function(acc, curr) {
+    //concat curr sub arr with acc
+    return acc.concat(curr);
+  }, []); //initial val for acc is empty arr
 
 }
 
